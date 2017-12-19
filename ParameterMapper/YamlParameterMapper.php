@@ -28,7 +28,7 @@ class YamlParameterMapper implements ParameterMapperInterface
     public function map(array $response): ParameterBag
     {
         if (!isset($response['data'][$this->valueField])) {
-            throw new \LogicException("$this->valueField field doesn't exists data array");
+            throw new \LogicException("Parameter \"$this->valueField\" field doesn't exists data array");
         }
 
         return new ParameterBag(Yaml::parse($response['data'][$this->valueField]));

@@ -35,27 +35,45 @@ class VaultParameterProvider implements ParameterProviderInterface
      * @param ParameterMapperInterface $parameterMapper
      */
     public function __construct(
-        VaultClientInterface $vaultClient,
         string $path,
-        ParameterMapperInterface $parameterMapper
+        ParameterMapperInterface $parameterMapper,
+        VaultClientInterface $vaultClient
     ) {
-        $this->vaultClient = $vaultClient;
         $this->path = $path;
+        $this->vaultClient = $vaultClient;
         $this->parameterMapper = $parameterMapper;
-        // for lazy loading
         $this->parameterBag = null;
     }
 
     /**
-     * @return ParameterBag
+     * {@inheritdoc}
      */
     public function get($name)
+    {
+        return $this->getParameterBag()->get($name);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all()
+    {
+        return $this->getParameterBag()->all();
+    }
+
+    /**
+     * For lazy load parameters.
+     *
+     * @return ParameterBag
+     */
+    protected function getParameterBag()
     {
         if ($this->parameterBag === null) {
             $response = $this->vaultClient->read($this->path);
             $this->parameterBag = $this->parameterMapper->map($response);
+            $this->parameterBag->resolve();
         }
 
-        return $this->parameterBag->get($name);
+        return $this->parameterBag;
     }
 }

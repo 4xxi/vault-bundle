@@ -19,13 +19,22 @@ class SimpleParameterProvider implements ParameterProviderInterface
     public function __construct(ParameterBag $parameterBag)
     {
         $this->parameterBag = $parameterBag;
+        $this->parameterBag->resolve();
     }
 
     /**
-     * @return ParameterBag
+     * {@inheritdoc}
      */
     public function get($name)
     {
         return $this->parameterBag->get($name);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all()
+    {
+        return $this->parameterBag->all();
     }
 }

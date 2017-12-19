@@ -9,5 +9,10 @@ interface ParameterProviderInterface
      *
      * @return mixed
      */
-    public function get($path);
+    public function get($field);
+
+    /**
+     * @return array
+     */
+    public function all();
 }
