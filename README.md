@@ -17,34 +17,65 @@ fourxxi_vault:
 
 ### Examples
 ```yaml
-    app.vault.yaml_mapper:
+    app.vault.mapper.yaml:
         class: Fourxxi\Bundle\VaultBundle\ParameterMapper\YamlParameterMapper
-        arguments: ["parameters"]
+        arguments: ["value"]
 
-    app.vault.cached_parameters_provider:
+    app.vault.mapper.simple:
+        class: Fourxxi\Bundle\VaultBundle\ParameterMapper\SimpleParameterMapper
+
+    # for cached parameters
+    app.vault.parameter_provider.elasticsearch:
         class: Fourxxi\Bundle\VaultBundle\ParameterProvider\VaultParameterProvider
         factory: "fourxxi_vault.parameter_provider.vault_factory:create"
-        arguments: ["secret/parameters/static", "@app.vault.yaml_mapper"]
-        tags: [fourxxi_vault.cached_parameters]
-
-    app.vault.enabled.parameters_provider:
-        class: Fourxxi\Bundle\VaultBundle\ParameterProvider\VaultParameterProvider
-        factory: "fourxxi_vault.parameter_provider.vault_factory:create"
-        arguments: ["secret/parameters/dynamic", "@app.vault.yaml_mapper"]
+        arguments: ["secret/elasticsearch", "@app.vault.mapper.yaml"]
         tags:
-            - { name: fourxxi_vault.enabled.parameters_provider, provider_name: 'dynamic' }
+            - { name: fourxxi_vault.cached_parameters }
 
-    app.vault.disabled.parameters_provider:
+    app.vault.parameter_provider.mysql:
+        class: Fourxxi\Bundle\VaultBundle\ParameterProvider\VaultParameterProvider
+        factory: "fourxxi_vault.parameter_provider.vault_factory:create"
+        arguments: ["secret/mysql", "@app.vault.mapper.simple"]
+        tags:
+            - { name: fourxxi_vault.cached_parameters }
+    
+    # For dynamic parameters
+    app.vault.enabled_parameter_provider.elasticsearch:
+        class: Fourxxi\Bundle\VaultBundle\ParameterProvider\VaultParameterProvider
+        factory: "fourxxi_vault.parameter_provider.vault_factory:create"
+        arguments: ["secret/elasticsearch", "@app.vault.mapper.yaml"]
+        tags:
+            - { name: fourxxi_vault.enabled_parameter_provider, provider_name: 'el' }
+
+    app.vault.disabled_parameters_provider.elasticsearch:
         class: Fourxxi\Bundle\VaultBundle\ParameterProvider\SimpleParameterProvider
         arguments: ["@=service('service_container').getParameterBag()"]
         tags:
-            - { name: fourxxi_vault.disabled.parameters_provider, provider_name: 'dynamic' }
+            - { name: fourxxi_vault.disabled_parameter_provider, provider_name: 'el' }
 
-    app.test:
+    app.vault.enabled_parameter_provider.mysql:
+        class: Fourxxi\Bundle\VaultBundle\ParameterProvider\VaultParameterProvider
+        factory: "fourxxi_vault.parameter_provider.vault_factory:create"
+        arguments: ["secret/mysql", "@app.vault.mapper.simple"]
+        tags:
+            - { name: fourxxi_vault.enabled_parameter_provider, provider_name: 'mysql' }
+
+    app.vault.disabled_parameters_provider.mysql:
+        class: Fourxxi\Bundle\VaultBundle\ParameterProvider\SimpleParameterProvider
+        arguments: ["@=service('service_container').getParameterBag()"]
+        tags:
+            - { name: fourxxi_vault.disabled_parameter_provider, provider_name: 'mysql' }
+
+    app.test.elasticsearch:
         class: App\Test
         public: true
-        arguments: [
-            - "@=v('dynamic','hello_world')"
-            - "@=vault('dynamic','hello_world')"
-            - "@=fourxxi_vault('dynamic','hello_world')"
+        arguments:
+            - "@=v('el','elasticsearch_host')"
+            - "@=vault('el','elasticsearch_password')"
+    app.test.mysql:
+        class: App\Test
+        public: true
+        arguments:
+            - "@=fourxxi_vault('mysql', 'database_pass')"
+            - "@=service('fourxxi_vault.parameter_getter').get('mysql','database_host')"
 ```
