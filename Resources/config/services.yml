@@ -1,0 +1,19 @@
+parameters:
+    fourxxi_vault.enabled: false
+services:
+
+    fourxxi_vault.auth: ~
+
+    fourxxi_vault.client.base_uri_configurator:
+        class: Fourxxi\Bundle\VaultBundle\Client\BaseUriConfigurator
+
+    fourxxi_vault.client.client:
+        class: Fourxxi\Bundle\VaultBundle\Client\VaultClient
+        arguments: ["@fourxxi_vault.auth","@fourxxi_vault.client.base_uri_configurator"]
+
+    fourxxi_vault.parameter_provider.vault_factory:
+        class: Fourxxi\Bundle\VaultBundle\ParameterProvider\VaultParameterProviderFactory
+        arguments: ["@fourxxi_vault.client.client"]
+
+    fourxxi_vault.parameter_getter:
+        class: Fourxxi\Bundle\VaultBundle\ParameterGetter\ParameterGetter
