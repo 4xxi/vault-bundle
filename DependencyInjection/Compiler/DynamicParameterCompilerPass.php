@@ -13,7 +13,7 @@ class DynamicParameterCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $enabled = $container->getParameter('fourxxi_vault.enabled');
-        $tag = sprintf('fourxxi_vault.%s.parameters_provider', true === $enabled ? 'enabled' : 'disabled');
+        $tag = sprintf('fourxxi_vault.%s_parameter_provider', true === $enabled ? 'enabled' : 'disabled');
 
         $taggedServices = $container->findTaggedServiceIds($tag);
 
