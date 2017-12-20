@@ -1,3 +1,6 @@
+# Vault bundle
+Symfony bundle for vault integration
+
 ### Configuration
 ```yaml
 fourxxi_vault:
