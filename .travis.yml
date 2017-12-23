@@ -8,5 +8,6 @@ branches:
 env:
     - VAULT_VERSION=0.9.1
 
+
 install:
     - ./travis/install-vault.sh
