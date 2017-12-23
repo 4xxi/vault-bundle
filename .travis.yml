@@ -2,14 +2,13 @@ language: php
 php:
     - '7.1'
 sudo: enabled
-
 branches:
     only:
         - feature/init-tests
 env:
     - VAULT_VERSION=0.9.1
-
-
 install:
-    - ./travis/install-vault.sh
-    - composer install
+    - ./travis/vault-install.sh
+before_script:
+    - composer install --no-interaction
+    - ./vault-run.sh

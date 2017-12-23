@@ -11,5 +11,4 @@ DOWNLOAD_URL=https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT
 
 wget ${DOWNLOAD_URL}
 unzip vault_${VAULT_VERSION}_${OS}_amd64.zip
-mv vault /usr/local/bin/vault
-chmod +x /usr/local/bin/vault
+chmod +x vault
