@@ -12,3 +12,4 @@ env:
 
 install:
     - ./travis/install-vault.sh
+    - composer install
