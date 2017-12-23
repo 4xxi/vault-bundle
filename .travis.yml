@@ -8,7 +8,7 @@ branches:
 env:
     - VAULT_VERSION=0.9.1
 install:
-    - ./travis/vault-install.sh
+    - ./Tests/travis/vault-install.sh
 before_script:
     - composer install --no-interaction
-    - ./travis/vault-run.sh
+    - ./Tests/travis/vault-run.sh
