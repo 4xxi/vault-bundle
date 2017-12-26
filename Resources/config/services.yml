@@ -2,7 +2,8 @@ parameters:
     fourxxi_vault.enabled: false
 services:
 
-    fourxxi_vault.auth: ~
+    fourxxi_vault.auth:
+        class: Fourxxi\Bundle\VaultBundle\Auth\AuthInterface
 
     fourxxi_vault.client.base_uri_configurator:
         class: Fourxxi\Bundle\VaultBundle\Client\BaseUriConfigurator
