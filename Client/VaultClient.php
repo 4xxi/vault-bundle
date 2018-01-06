@@ -41,4 +41,12 @@ class VaultClient implements VaultClientInterface
 
         return json_decode($response->getBody()->getContents(), true);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function write(string $path, array $value)
+    {
+        $this->client->send(new Request('POST', $path, [], json_encode($value)));
+    }
 }

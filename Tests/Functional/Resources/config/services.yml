@@ -1,0 +1,10 @@
+services:
+    fourxxi_vault.test.mapper.yaml:
+        class: Fourxxi\Bundle\VaultBundle\ParameterMapper\YamlParameterMapper
+        arguments: ["value"]
+
+    fourxxi_vault.test.mapper.simple:
+        class: Fourxxi\Bundle\VaultBundle\ParameterMapper\SimpleParameterMapper
+
+
+

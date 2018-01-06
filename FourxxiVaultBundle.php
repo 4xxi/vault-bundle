@@ -12,13 +12,13 @@ class FourxxiVaultBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        parent::build($container);
-
         $container->addExpressionLanguageProvider(
-            new VaultParameterExpressionLanguageProvider('v')
+            new VaultParameterExpressionLanguageProvider()
         );
 
         $container->addCompilerPass(new CachedParameterCompilerPass());
         $container->addCompilerPass(new DynamicParameterCompilerPass());
+
+        parent::build($container);
     }
 }

@@ -10,6 +10,7 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
+        <env name="KERNEL_CLASS" value="Fourxxi\Bundle\VaultBundle\Tests\Functional\Kernel" />
     </php>
 
     <testsuites>

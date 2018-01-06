@@ -72,6 +72,7 @@ fourxxi_vault:
         arguments:
             - "@=v('el','elasticsearch_host')"
             - "@=vault('el','elasticsearch_password')"
+                        
     app.test.mysql:
         class: App\Test
         public: true

@@ -1,0 +1,18 @@
+imports:
+    - { resource: services.yml }
+
+parameters:
+    token: c618a7bc-56ff-9799-be89-514f3557f956
+
+framework:
+    secret: 'test'
+
+fourxxi_vault:
+    enabled: true
+    auth:
+        token: "%token%"
+    connection:
+        schema: http
+        host: 127.0.0.1
+        port: 8200
+        api_version: 'v1'
