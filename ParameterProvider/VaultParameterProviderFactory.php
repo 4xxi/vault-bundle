@@ -2,23 +2,23 @@
 
 namespace Fourxxi\Bundle\VaultBundle\ParameterProvider;
 
-use Fourxxi\Bundle\VaultBundle\Client\VaultClientInterface;
+use Fourxxi\Bundle\VaultBundle\Client\VaultReaderClientInterface;
 use Fourxxi\Bundle\VaultBundle\ParameterMapper\ParameterMapperInterface;
 use Fourxxi\Bundle\VaultBundle\ParameterMapper\SimpleParameterMapper;
 
 class VaultParameterProviderFactory
 {
     /**
-     * @var VaultClientInterface
+     * @var VaultReaderClientInterface
      */
     protected $vaultClient;
 
     /**
      * VaultParameterProviderFactory constructor.
      *
-     * @param VaultClientInterface $vaultClient
+     * @param VaultReaderClientInterface $vaultClient
      */
-    public function __construct(VaultClientInterface $vaultClient)
+    public function __construct(VaultReaderClientInterface $vaultClient)
     {
         $this->vaultClient = $vaultClient;
     }

@@ -72,10 +72,33 @@ fourxxi_vault:
         arguments:
             - "@=v('el','elasticsearch_host')"
             - "@=vault('el','elasticsearch_password')"
+                        
     app.test.mysql:
         class: App\Test
         public: true
         arguments:
             - "@=fourxxi_vault('mysql', 'database_pass')"
             - "@=service('fourxxi_vault.parameter_getter').get('mysql','database_host')"
+```
+
+### Running unit tests:
+```bash
+./vendor/bin/phpunit --testsuite unit
+```
+
+### Running functional tests:
+
+Run vault:
+```bash
+docker run -d -p 8200:8200 --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=f29e2a2f-26ac-a182-b7a9-05be2381e200' vault
+```
+
+Run tests for Symfony 2.8
+```bash
+./vendor/bin/simple-phpunit --testsuite functional
+```
+
+Run tests for Symfony >= 3
+```bash
+./vendor/bin/phpunit --testsuite functional
 ```

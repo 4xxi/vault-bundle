@@ -6,7 +6,7 @@ use Fourxxi\Bundle\VaultBundle\Auth\AuthInterface;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Psr7\Request;
 
-class VaultClient implements VaultClientInterface
+class VaultClient implements VaultReaderClientInterface, VaultWriterClientInterface
 {
     /**
      * @var HttpClient
@@ -40,5 +40,13 @@ class VaultClient implements VaultClientInterface
         $response = $this->client->send(new Request('GET', $path));
 
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function write(string $path, array $value)
+    {
+        $this->client->send(new Request('POST', $path, [], json_encode($value)));
     }
 }

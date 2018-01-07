@@ -10,11 +10,29 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
+        <env name="KERNEL_CLASS" value="Fourxxi\Bundle\VaultBundle\Tests\Functional\Kernel" />
+
+        <env name="vault_token" value="f29e2a2f-26ac-a182-b7a9-05be2381e200" />
+        <env name="vault_schema" value="http" />
+        <env name="vault_host" value="127.0.0.1" />
+        <env name="vault_port" value="8200" />
+        <env name="vault_api_version" value="v1" />
+
+        <!-- compatibility with symfony 2.8 -->
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+        <server name="SYMFONY__env(vault_token)" value="f29e2a2f-26ac-a182-b7a9-05be2381e200" />
+        <server name="SYMFONY__env(vault_schema)" value="http" />
+        <server name="SYMFONY__env(vault_host)" value="127.0.0.1" />
+        <server name="SYMFONY__env(vault_port)" value="8200" />
+        <server name="SYMFONY__env(vault_api_version)" value="v1" />
     </php>
 
     <testsuites>
-        <testsuite name="Fourxxi Vault Bundle Test Suite">
-            <directory>./Tests/</directory>
+        <testsuite name="unit">
+            <directory>./Tests/Unit</directory>
+        </testsuite>
+        <testsuite name="functional">
+            <directory>./Tests/Functional</directory>
         </testsuite>
     </testsuites>
 

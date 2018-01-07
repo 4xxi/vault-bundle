@@ -2,14 +2,14 @@
 
 namespace Fourxxi\Bundle\VaultBundle\ParameterProvider;
 
-use Fourxxi\Bundle\VaultBundle\Client\VaultClientInterface;
+use Fourxxi\Bundle\VaultBundle\Client\VaultReaderClientInterface;
 use Fourxxi\Bundle\VaultBundle\ParameterMapper\ParameterMapperInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class VaultParameterProvider implements ParameterProviderInterface
 {
     /**
-     * @var VaultClientInterface
+     * @var VaultReaderClientInterface
      */
     protected $vaultClient;
 
@@ -37,7 +37,7 @@ class VaultParameterProvider implements ParameterProviderInterface
     public function __construct(
         string $path,
         ParameterMapperInterface $parameterMapper,
-        VaultClientInterface $vaultClient
+        VaultReaderClientInterface $vaultClient
     ) {
         $this->path = $path;
         $this->vaultClient = $vaultClient;
