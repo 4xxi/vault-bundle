@@ -1,5 +1,4 @@
 # Symfony bundle for integration with Vault by HashiCorp 
-=======
 
 Master branch: [![Build Master Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=master)](https://travis-ci.org/4xxi/vault-bundle)
 
@@ -105,3 +104,8 @@ Run tests for Symfony >= 3
 ```bash
 ./vendor/bin/phpunit --testsuite functional
 ```
+
+### @todo
+
+1. Adding more tests
+2. Writing documentation
