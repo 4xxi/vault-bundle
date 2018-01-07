@@ -1,6 +1,9 @@
-# Vault bundle
-Symfony bundle for vault integration
+# Symfony bundle for integration with Vault by HashiCorp 
 =======
+
+Master branch: [![Build Master Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=master)](https://travis-ci.org/4xxi/vault-bundle)
+
+Develop branch: [![Build Develop Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=develop)](https://travis-ci.org/4xxi/vault-bundle)
 
 ### Configuration
 ```yaml
