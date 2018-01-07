@@ -8,6 +8,11 @@ services:
 php:
     - '7.1'
 
+branches:
+    only:
+        - master
+        - develop
+
 before_install:
     - docker pull vault
 
