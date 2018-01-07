@@ -1,18 +1,18 @@
-imports:
-    - { resource: services.yml }
-
-parameters:
-    token: c618a7bc-56ff-9799-be89-514f3557f956
-
 framework:
     secret: 'test'
 
 fourxxi_vault:
     enabled: true
     auth:
-        token: "%token%"
+        token: "%env(vault_token)%"
     connection:
-        schema: http
-        host: 127.0.0.1
-        port: 8200
-        api_version: 'v1'
+        schema: "%env(vault_schema)%"
+        host: "%env(vault_host)%"
+        port: "%env(vault_port)%"
+        api_version: '%env(vault_api_version)%'
+
+services:
+    fourxxi_vault.test.writer_client:
+        class: Fourxxi\Bundle\VaultBundle\Client\VaultClient
+        arguments: ["@fourxxi_vault.auth", "@fourxxi_vault.client.base_uri_configurator"]
+        public: true

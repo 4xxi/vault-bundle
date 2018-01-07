@@ -24,7 +24,7 @@ class Kernel extends BaseKernel
     {
         return [
             new FrameworkBundle(),
-            new FourxxiVaultBundle()
+            new FourxxiVaultBundle(),
         ];
     }
 
@@ -59,17 +59,15 @@ class Kernel extends BaseKernel
      * $c->setParameter('halloween', 'lot of fun');
      *
      * @param ContainerBuilder $c
-     * @param LoaderInterface $loader
+     * @param LoaderInterface  $loader
      */
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/Resources/config/config.yml');
+        $loader->load(sprintf('%s/Resources/config/config_%s.yml', __DIR__, $this->getEnvironment()));
     }
-
 
     public function getCacheDir()
     {
-        // change to tmp dir
         return __DIR__.'/var/cache';
     }
 
@@ -77,6 +75,4 @@ class Kernel extends BaseKernel
     {
         return __DIR__.'/var/logs';
     }
-
-
 }

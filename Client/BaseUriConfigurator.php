@@ -2,7 +2,7 @@
 
 namespace Fourxxi\Bundle\VaultBundle\Client;
 
-class BaseUriConfigurator
+class BaseUriConfigurator implements BaseUriConfiguratorInterface
 {
     /**
      * @var

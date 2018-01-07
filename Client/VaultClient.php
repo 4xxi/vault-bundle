@@ -6,7 +6,7 @@ use Fourxxi\Bundle\VaultBundle\Auth\AuthInterface;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Psr7\Request;
 
-class VaultClient implements VaultClientInterface
+class VaultClient implements VaultReaderClientInterface, VaultWriterClientInterface
 {
     /**
      * @var HttpClient
