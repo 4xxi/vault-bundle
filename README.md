@@ -4,7 +4,7 @@ Master branch: [![Build Master Status](https://travis-ci.org/4xxi/vault-bundle.s
 
 Develop branch: [![Build Develop Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=develop)](https://travis-ci.org/4xxi/vault-bundle)
 
-### Configuration
+### Full configuration
 ```yaml
 fourxxi_vault:
     enabled: true
