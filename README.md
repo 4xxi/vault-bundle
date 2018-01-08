@@ -1,8 +1,8 @@
 # Symfony bundle for integration with Vault by HashiCorp 
+### Badges
+[![Build Develop Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=develop)](https://travis-ci.org/4xxi/vault-bundle)
 
-Master branch: [![Build Master Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=master)](https://travis-ci.org/4xxi/vault-bundle)
-
-Develop branch: [![Build Develop Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=develop)](https://travis-ci.org/4xxi/vault-bundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d004e03d-ee45-448f-a897-a55fc1522fde/big.png)](https://insight.sensiolabs.com/projects/d004e03d-ee45-448f-a897-a55fc1522fde)
 
 ### Full configuration
 ```yaml
