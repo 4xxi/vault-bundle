@@ -1,0 +1,18 @@
+framework:
+    secret: 'test'
+
+fourxxi_vault:
+    enabled: true
+    auth:
+        token: "%env(vault_token)%"
+    connection:
+        schema: "%env(vault_schema)%"
+        host: "%env(vault_host)%"
+        port: "%env(vault_port)%"
+        api_version: '%env(vault_api_version)%'
+
+services:
+    fourxxi_vault.test.writer_client:
+        class: Fourxxi\Bundle\VaultBundle\Client\VaultClient
+        arguments: ["@fourxxi_vault.auth", "@fourxxi_vault.client.base_uri_configurator"]
+        public: true

@@ -16,6 +16,8 @@
     "psr-4": { "Fourxxi\\Bundle\\VaultBundle\\": "" }
   },
   "require-dev": {
-    "phpunit/phpunit": "^6"
+    "phpunit/phpunit": "^6",
+    "symfony/phpunit-bridge": "^4",
+    "symfony/finder": ">=2.8"
   }
 }

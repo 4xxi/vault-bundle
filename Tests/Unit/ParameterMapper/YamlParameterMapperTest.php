@@ -1,6 +1,6 @@
 <?php
 
-namespace Fourxxi\Bundle\VaultBundle\Tests\ParameterMapper;
+namespace Fourxxi\Bundle\VaultBundle\Tests\Unit\ParameterMapper;
 
 use Fourxxi\Bundle\VaultBundle\ParameterMapper\YamlParameterMapper;
 use PHPUnit\Framework\TestCase;

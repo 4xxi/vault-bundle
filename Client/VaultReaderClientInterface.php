@@ -2,7 +2,7 @@
 
 namespace Fourxxi\Bundle\VaultBundle\Client;
 
-interface VaultClientInterface
+interface VaultReaderClientInterface
 {
     /**
      * @param string $pathProvider

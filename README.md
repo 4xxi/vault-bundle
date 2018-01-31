@@ -1,8 +1,10 @@
-# Vault bundle
-Symfony bundle for vault integration
-=======
+# Symfony bundle for integration with Vault by HashiCorp 
+### Badges
+[![Build Develop Status](https://travis-ci.org/4xxi/vault-bundle.svg?branch=develop)](https://travis-ci.org/4xxi/vault-bundle)
 
-### Configuration
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d004e03d-ee45-448f-a897-a55fc1522fde/big.png)](https://insight.sensiolabs.com/projects/d004e03d-ee45-448f-a897-a55fc1522fde)
+
+### Full configuration
 ```yaml
 fourxxi_vault:
     enabled: true
@@ -72,6 +74,7 @@ fourxxi_vault:
         arguments:
             - "@=v('el','elasticsearch_host')"
             - "@=vault('el','elasticsearch_password')"
+                        
     app.test.mysql:
         class: App\Test
         public: true
@@ -79,3 +82,30 @@ fourxxi_vault:
             - "@=fourxxi_vault('mysql', 'database_pass')"
             - "@=service('fourxxi_vault.parameter_getter').get('mysql','database_host')"
 ```
+
+### Running unit tests:
+```bash
+./vendor/bin/phpunit --testsuite unit
+```
+
+### Running functional tests:
+
+Run vault:
+```bash
+docker run -d -p 8200:8200 --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=f29e2a2f-26ac-a182-b7a9-05be2381e200' vault
+```
+
+Run tests for Symfony 2.8
+```bash
+./vendor/bin/simple-phpunit --testsuite functional
+```
+
+Run tests for Symfony >= 3
+```bash
+./vendor/bin/phpunit --testsuite functional
+```
+
+### @todo
+
+1. Adding more tests
+2. Writing documentation

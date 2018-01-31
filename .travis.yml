@@ -1,7 +1,26 @@
+sudo: required
+
 language: php
+
+services:
+    - docker
+
 php:
     - '7.1'
-sudo: enabled
+
 branches:
     only:
-        - feature/init-tests
+        - master
+        - develop
+
+before_install:
+    - docker pull vault
+
+before_script:
+    - composer install --no-interaction --dev
+    - docker run -d -p 8200:8200 --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=f29e2a2f-26ac-a182-b7a9-05be2381e200' vault
+    - sleep 2
+    - curl http://127.0.0.1:8200/v1/sys/health
+
+script:
+    - phpunit
